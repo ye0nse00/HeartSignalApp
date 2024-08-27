@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPM Display</title>
+    <script>
+        async function fetchBPM() {
+            try {
+                const response = await fetch('/update_bpm', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({bpm: 75}) });  // 예제 bpm 값
+                const data = await response.json();
+                document.getElementById('bpm').textContent = data.bpm;
+                document.getElementById('status').textContent = data.status;
+            } catch (error) {
+                console.error('Error fetching BPM:', error);
+            }
+        }
+
+        setInterval(fetchBPM, 1000); // 매초 데이터 갱신
+    </script>
+</head>
+<body>
+    <h1>BPM Display</h1>
+    <p>Current BPM: <span id="bpm">0</span></p>
+    <p>Status: <span id="status">Unknown</span></p>
+</body>
+</html>
