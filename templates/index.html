@@ -2,26 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPM Display</title>
+    <title>Heart Rate Monitor</title>
     <script>
-        async function fetchBPM() {
-            try {
-                const response = await fetch('/update_bpm', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({bpm: 75}) });  // 예제 bpm 값
-                const data = await response.json();
-                document.getElementById('bpm').textContent = data.bpm;
-                document.getElementById('status').textContent = data.status;
-            } catch (error) {
-                console.error('Error fetching BPM:', error);
-            }
+        function fetchBPM() {
+            fetch('http://127.0.0.1:5000/update_bpm')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Fetched data:', data);  // 서버로부터 받은 데이터 로그 출력
+                    document.getElementById('bpm').textContent = `BPM: ${data.bpm}`;
+                    document.getElementById('status').textContent = `Status: ${data.status}`;
+                })
+                .catch(error => console.error('Error:', error));
         }
 
-        setInterval(fetchBPM, 1000); // 매초 데이터 갱신
+        setInterval(fetchBPM, 1000);  // Fetch BPM every second
     </script>
 </head>
 <body>
-    <h1>BPM Display</h1>
-    <p>Current BPM: <span id="bpm">0</span></p>
-    <p>Status: <span id="status">Unknown</span></p>
+    <h1>Heart Rate Monitor</h1>
+    <div id="bpm">BPM: --</div>
+    <div id="status">Status: --</div>
 </body>
 </html>
