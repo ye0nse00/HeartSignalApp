@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function loadStylesheet(url) {\n  const link = document.createElement('link');\n  link.rel = 'stylesheet';\n  link.href = url;\n  document.head.appendChild(link);\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

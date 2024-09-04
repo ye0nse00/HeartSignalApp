@@ -1,0 +1,1 @@
+{"ast":null,"code":"export function removeStylesheet(url) {\n  const links = document.querySelectorAll(`link[href=\"${url}\"]`);\n  links.forEach(link => link.remove());\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
