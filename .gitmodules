@@ -1,0 +1,3 @@
+[submodule "HeartSignalApp"]
+	path = HeartSignalApp
+	url = https://github.com/ye0nse00/HeartSignalApp.git
